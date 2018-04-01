@@ -1,0 +1,5 @@
+*.o
+makeo
+makex
+t/out
+trim

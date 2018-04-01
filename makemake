@@ -1,0 +1,36 @@
+#!/bin/sh -e
+
+case "x$DEBUG" in
+    x2)
+        compile="scan-build -o code-analysis ${CC:-clang} -g -O0"
+        ;;
+    x1)
+        compile="${CC:-clang} -g -O0"
+        ;;
+    *)
+        compile="${CC:-clang -O2}"
+        ;;
+esac
+
+case "t$1" in
+    to)
+        echo '#!/bin/sh -e'
+        echo exec $compile '-c ${1+"$@"}.c'
+        ;;
+    tx)
+        echo '#!/bin/sh -e'
+        echo 'main="$1"; shift'
+        echo exec $compile -o '"$main" "$main".o ${1+"$@"}'
+        ;;
+    tso)
+        echo '#!/bin/sh -e'
+        echo 'main="$1"; shift'
+        echo exec $compile '-shared -o "$main".so "$main".o ${1+"$@"}'
+        ;;
+    ttargets)
+        grep -v '^ *#' Makefile | grep '^[^:]*:' | sed 's/:.*//'
+        ;;
+    *)
+        exit 1
+        ;;
+esac

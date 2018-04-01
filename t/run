@@ -1,0 +1,32 @@
+#!/bin/sh -e
+
+cd `dirname $0`
+cd ..
+
+./trim > t/out
+echo . >> t/out
+
+./trim "  " >> t/out
+echo . >> t/out
+
+./trim "a" >> t/out
+echo . >> t/out
+
+./trim "  a " >> t/out
+echo . >> t/out
+
+./trim "  a bc " >> t/out
+echo . >> t/out
+
+./trim "a bc
+" >> t/out
+echo . >> t/out
+
+./trim "
+
+a bc
+
+" >> t/out
+echo . >> t/out
+
+cmp t/out t/expected

@@ -1,0 +1,18 @@
+Prints first argument with whitespace removed from both ends.
+
+Build:
+	set environment variable CC to your C compiler
+		if CC is not set, clang will be used
+
+	run commands:
+		chmod +x makemake
+		make
+
+Test:
+	run command:
+		./t/run
+
+	it should produce no output
+
+Example usage:
+	see t/run
