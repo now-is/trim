@@ -1,5 +1,3 @@
-/* trim left and right whitespace from first argument */
-
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -9,7 +7,7 @@ int main (int argc, char **argv) {
 	int j = 1;
 
 	/* advance argv[1] to first non-whitespace character */
-    while (*argv[1] && j) {
+	while (*argv[1] && j) {
 		switch (*argv[1]) {
 		case ' ':  case '\r': case '\n':
 		case '\t': case '\f': case '\v':
@@ -19,19 +17,19 @@ int main (int argc, char **argv) {
 		}
 	}
 
-    if (!*argv[1]) exit(0);
+	if (!*argv[1]) exit(0);
 
-	/* postion of last seen non-whitespace character */
+	/* position of last seen non-whitespace character */
 	int k = 0;
 
 	j = 1;
-    while (argv[1][j]) {
+	while (argv[1][j]) {
 		switch (argv[1][j]) {
-			case ' ':  case '\r': case '\n':
-			case '\t': case '\f': case '\v':
-				break;
-			default:
-				k = j;
+		case ' ':  case '\r': case '\n':
+		case '\t': case '\f': case '\v':
+			break;
+		default:
+			k = j;
 		}
 		j++;
 	}
