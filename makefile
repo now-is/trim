@@ -1,4 +1,4 @@
-# vim:noexpandtab:ts=8
+# vim:noexpandtab:ts=8:sts=8:sw=8
 
 SHELL=/bin/sh
 
@@ -22,6 +22,10 @@ makefile makemake
 clean: \
 maketargets
 	rm -f `cat maketargets`
+
+test: \
+trim
+	./t/run
 
 trim.o: \
 makeo trim.c

@@ -10,7 +10,7 @@ Build:
 
 Test:
 	run command:
-		./t/run
+		make test
 
 	it should produce no output
 
